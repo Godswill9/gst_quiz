@@ -9,7 +9,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 5em;
+  padding-top: 3em;
+  font-family: sans-serif;
+  background: linear-gradient(rgb(255, 162, 255), white, rgb(247, 212, 247));
+  height: 100vh;
+}
+.formCont h1 {
+  text-align: center;
+  color: purple;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+.formCont span {
+  font-weight: bold;
+  margin: 10px;
+  color: purple;
+  font-style: italic;
 }
 .formCont input {
   display: inline-block;
@@ -20,9 +36,23 @@
 }
 .formCont button {
   padding: 10px;
-  background-color: green;
+  background-color: purple;
   color: white;
   font-weight: bold;
   border: 1px solid transparent;
   border-radius: 5px;
+}
+.formCont .firstPrompt {
+  font-size: 19px;
+}
+.formCont .secondPrompt {
+  font-weight: bold;
+  background-color: purple;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+.formCont .secondPrompt a {
+  color: orange;
 }/*# sourceMappingURL=form.css.map */

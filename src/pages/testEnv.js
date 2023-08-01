@@ -41,11 +41,11 @@ export default function TestEnv() {
       .then((res) => res.json())
       .then((res) => {
         if (!res) {
-          navigate("/login")
+          navigate("/login");
           return;
         } else {
-          setName(res[0].firstName);
-          setDepartment(res[0].department);
+          setName(localStorage.getItem("studentName"));
+          setDepartment(localStorage.getItem("studentDepartment"));
         }
       });
   }, []);
@@ -88,7 +88,7 @@ export default function TestEnv() {
       .then((res) => res.json())
       .then((res) => {
         if (res.message == "no Questions") {
-          console.log("no questions");
+          // console.log("no questions");
           return;
         }
         if (res) {
@@ -116,7 +116,7 @@ export default function TestEnv() {
     var answer = document.querySelectorAll(".answer");
 
     for (var i = 0; i < selected.length; i++) {
-      console.log(answer[i].textContent);
+      // console.log(answer[i].textContent);
       if (
         selected[i].textContent !== "" &&
         selected[i].textContent == answer[i].textContent
@@ -128,28 +128,28 @@ export default function TestEnv() {
             options[i].querySelectorAll(".option")[0].style.border =
               "2px solid green";
             options[i].querySelectorAll(".option")[0].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[0].style.color = "green";
             break;
           case "B":
             options[i].querySelectorAll(".option")[1].style.border =
               "2px solid green";
             options[i].querySelectorAll(".option")[1].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[1].style.color = "green";
             break;
           case "C":
             options[i].querySelectorAll(".option")[2].style.border =
               "2px solid green";
             options[i].querySelectorAll(".option")[2].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[2].style.color = "green";
             break;
           case "D":
             options[i].querySelectorAll(".option")[3].style.border =
               "2px solid green";
             options[i].querySelectorAll(".option")[3].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[3].style.color = "green";
             break;
 
@@ -164,28 +164,28 @@ export default function TestEnv() {
             options[i].querySelectorAll(".option")[0].style.border =
               "2px solid green";
             options[i].querySelectorAll(".option")[0].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[0].style.color = "green";
             break;
           case "B":
             options[i].querySelectorAll(".option")[1].style.border =
               "2px solid green";
             options[i].querySelectorAll(".option")[1].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[1].style.color = "green";
             break;
           case "C":
             options[i].querySelectorAll(".option")[2].style.border =
               "2px solid green";
             options[i].querySelectorAll(".option")[2].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[2].style.color = "green";
             break;
           case "D":
             options[i].querySelectorAll(".option")[3].style.border =
               "2px solid green";
             options[i].querySelectorAll(".option")[3].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[3].style.color = "green";
             break;
 
@@ -197,28 +197,28 @@ export default function TestEnv() {
             options[i].querySelectorAll(".option")[0].style.border =
               "2px solid red";
             options[i].querySelectorAll(".option")[0].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[0].style.color = "red";
             break;
           case "B":
             options[i].querySelectorAll(".option")[1].style.border =
               "2px solid red";
             options[i].querySelectorAll(".option")[1].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[1].style.color = "red";
             break;
           case "C":
             options[i].querySelectorAll(".option")[2].style.border =
               "2px solid red";
             options[i].querySelectorAll(".option")[2].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[2].style.color = "red";
             break;
           case "D":
             options[i].querySelectorAll(".option")[3].style.border =
               "2px solid red";
             options[i].querySelectorAll(".option")[3].style.backgroundColor =
-              "white";
+              "black";
             options[i].querySelectorAll(".option")[3].style.color = "red";
             break;
 
@@ -250,23 +250,31 @@ export default function TestEnv() {
         </div>
         <div className="second">
           <div className="timer">
-            {time}:{secs}
+            <span>TIME:</span> {time}:{secs}
           </div>
           <div className="identity">
-            <div className="name">{name}</div>
-            <div className="department">{department}</div>
+            <div className="name">
+              <span>NAME:</span> {name}
+            </div>
+            <div className="department">
+              <span>DEPARTMENT:</span> {department}
+            </div>
           </div>
-          <div className="course">{subject}</div>
+          <div className="course">
+            <span>COURSE: </span>
+            {subject}
+          </div>
         </div>
       </nav>
       <div className="innerCont">
         <div className="result" style={{ display: scoreDisplay }}>
           <h3>
             Your score is {totalScore}/{questions.length}. View corrections
+            below
           </h3>
         </div>
-        <h1>Answer all questions</h1>
-        {questions.map((item, index) => {
+        <h1 className="head">Attempt all questions</h1>
+        {questions.reverse().map((item, index) => {
           return (
             <div className="box" key={index} ref={allVals}>
               <span className="number">{index + 1}</span>
@@ -298,7 +306,8 @@ export default function TestEnv() {
                           parentElement.getElementsByClassName(
                             "option"
                           )[3].style.backgroundColor = "";
-                          e.target.style.backgroundColor = "green";
+                          e.target.style.backgroundColor = "rgb(191, 250, 191)";
+                          e.target.style.color = "black";
                           const box =
                             e.target.parentElement.parentElement.parentElement;
                           var selected = box.querySelector(".selected");
@@ -319,7 +328,7 @@ export default function TestEnv() {
                   <br></br>
                   <b className="ans">{item.answer}</b>
                   <br></br>
-                  {item.description}
+                  <span>{item.description}</span>
                 </div>
                 <span className="selected"></span>
                 <span className="answer"></span>

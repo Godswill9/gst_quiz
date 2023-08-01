@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function Home() {
   const [display, setDisplay] = useState("none");
   const [subject, setSubject] = useState("");
+  const [name, setName] = useState("");
   const [time, setTime] = useState(40);
   const navigate = useNavigate();
 
@@ -15,6 +16,9 @@ export default function Home() {
       navigate("/login");
     } else {
     }
+  }, []);
+  useEffect(() => {
+    setName(localStorage.getItem("studentName"));
   }, []);
   const controlPopup = () => {
     if (display == "block") {
@@ -31,8 +35,10 @@ export default function Home() {
   return (
     <div className="container2">
       <div className="innerContainer">
-        <h1>Welcome back</h1>
-        <h1>Choose a topic to test</h1>
+        <h1>
+          Welcome back <span className="name">{name}</span>
+        </h1>
+        <h1 className="task">Choose a topic to test</h1>
         <div className="topics">
           {arr.map((item, i) => {
             return (
@@ -60,6 +66,10 @@ export default function Home() {
         <input
           type="number"
           onChange={(e) => {
+            if (e.target.value == 0) {
+              alert("you cannot select zero");
+              return;
+            }
             setTime(e.target.value);
           }}
           value={time}
@@ -67,6 +77,7 @@ export default function Home() {
         mins<br></br>
         <a href="/testEnv">
           <button
+            className="button"
             onClick={() => {
               localStorage.setItem("time", time);
             }}
@@ -79,9 +90,7 @@ export default function Home() {
         className="wrapper"
         onClick={closePopup}
         style={{ display: display }}
-      >
-        hi
-      </div>
+      ></div>
     </div>
   );
 }

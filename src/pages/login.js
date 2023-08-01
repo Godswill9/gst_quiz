@@ -29,8 +29,8 @@ export default function Login() {
     const screenWidth = window.screen.width;
     const screenHeight = window.screen.height;
 
-    console.log(screenWidth);
-    console.log(screenHeight);
+    // console.log(screenWidth);
+    // console.log(screenHeight);
     setData((prev) => ({
       ...prev,
       screenDimensions: `${
@@ -61,7 +61,9 @@ export default function Login() {
         if (res.status == "success") {
           Cookies.set("jwt", res.accessToken, cookieOptions);
           localStorage.setItem("studentId", res.id);
-          navigate("/");
+          localStorage.setItem("studentName", res.firstName);
+          localStorage.setItem("studentDepartment", res.department);
+          navigate("/home");
         } else {
           alert(res.message);
         }

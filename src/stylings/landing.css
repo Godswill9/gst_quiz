@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.landingContainer {
+  width: 100%;
+  height: 100vh;
+  font-family: sans-serif;
+  background-color: black;
+}
+.landingContainer .header {
+  width: 100%;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  justify-content: space-around;
+  background-color: rgb(71, 15, 71);
+  color: black;
+}
+.landingContainer .header .logo {
+  font-size: 22px;
+  margin: 10px;
+  color: white;
+}
+.landingContainer .header .navList {
+  display: flex;
+  align-items: center;
+}
+.landingContainer .header .navList a {
+  margin: 10px;
+  text-decoration: none;
+  color: black;
+  color: white;
+  font-size: 19px;
+  font-weight: bold;
+}
+.landingContainer .header .navList button {
+  padding: 10px;
+  background-color: orangered;
+  border: 1px solid white;
+  color: white;
+  font-weight: bold;
+}
+.landingContainer .hero {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: plum;
+}
+.landingContainer .hero h1 {
+  margin-top: 3em;
+  width: 80%;
+  text-align: center;
+}
+.landingContainer .hero h1 span {
+  background-color: greenyellow;
+  padding: 5px;
+  border-radius: 5px;
+}
+@media (max-width: 567px) {
+  .landingContainer .hero h1 {
+    font-size: 24px;
+  }
+}
+.landingContainer .hero button {
+  padding: 10px;
+  margin: 2em;
+  background-color: orangered;
+  color: white;
+  font-weight: bold;
+  border: 1px solid white;
+  width: 10em;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.landingContainer .hero img {
+  margin: 1em;
+}
+.landingContainer .footer {
+  border: 1px solid black;
+  height: 7em;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.landingContainer .footer .logo {
+  text-align: center;
+  font-size: 22px;
+  margin: 10px;
+}/*# sourceMappingURL=landing.css.map */

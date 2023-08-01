@@ -6,22 +6,46 @@
 .container2{
     width: 100%;
     position: relative;
+    background-color: plum;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-family: sans-serif;
     .innerContainer{
         width: 70%;
         h1{
-            background-color: orange;
+            background-color: purple;
+            color: white;
+            padding-left: 10px;
+            font-size: 24px;
+        }
+        .task{
+            font-size: 19px;
+            color: peru;
+        }
+        .name{
+            color: orange;
         }
         .topics{
             .subject{
                 background-color: black;
                 color: white;
-                font-size: 28px;
+                font-size: 23px;
                 font-weight: bold;
                 padding: 17px;
                 border: 1px solid white;
                 margin-bottom: 2px;
+                background-color: rgb(36, 15, 36);
+                color: white;
             }
         }
+    }
+    @media (max-width:656px) {
+     .innerContainer{
+        width: 95%;
+     }
     }
     .timer{
        border: 1px solid black;
@@ -34,6 +58,31 @@
        transform: translate(-50%, -50%);
        z-index: 2;
        padding: 15px;
+       h4{
+        color: orange;
+       }
+       h1{
+        color: white;
+        font-size: 24px;
+       }
+       .time{
+        color: orange
+       }
+       input{
+        padding: 5px;
+        margin: 2px;
+       }
+       a{
+       .button{
+            padding: 7px;
+              margin: 3px;
+              background:green;
+              color:white;
+              font-weight: bold;
+              border:1px solid white;
+              border-radius: 5px;
+             };
+       }
     }
     .wrapper{
       width:100%;

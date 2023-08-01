@@ -9,6 +9,9 @@
     align-items: center;
     flex-direction: column;
     border: 1px solid black;
+    min-height: 100vh;
+    background-color: palevioletred;
+    font-family: sans-serif;
     nav{
          border: 1px solid black;
           width: 100%;
@@ -26,6 +29,7 @@
      width: 100%;
      background-color: black;
      color: white;
+     margin: 10px;
     }
     .second{
          border: 1px solid black;
@@ -34,26 +38,51 @@
          top:100%;
          background-color: black;
          color: white;
+         padding: 2px;
+         div{
+            border-bottom: 1px solid white;
+            margin: 3px;
+            font-size: 19px;
+            font-weight: bold;
+         }
+         span{
+            color: orange;
+         }
 
     }
     .innerCont{
         width: 70%;
-        border: 1px solid black;
+        // border: 1px solid black;
         margin-top:5em;
         display: flex;
         flex-direction: column;
         align-items: center;
+        .head{
+            color: white;
+            background-color: black;
+            padding: 5px;
+            border-radius: 5px;
+            margin: 5px;
+        }
         .box{
             width: 90%;
-            border: 1px solid black;
+            // border: 1px solid black;
               display: flex;
                align-items:flex-start;
                justify-content: center;
                margin-bottom: 10px;
-               background-color: rgba(245, 218, 218, 0.24);
+            //    background-color: rgba(255, 254, 254, 0.644);
         }
+        .result{
+            h3{
+                background-color: rgb(248, 248, 162);
+                padding: 4px;
+                border-radius: 3px;
+            }
+        }
+
        .number{
-        border: 1px solid black;
+        // border: 1px solid black;
          font-size: 19px;
     padding: 10px;
     display: flex;
@@ -66,34 +95,82 @@
             margin-right: 2px;
             color: white;
        }
+       @media (max-width:768px) {
+        .number{
+            width: 1em;
+            height: 1em;
+            font-size: 15px;
+        }
+       }
        .others{
-        border: 1px solid black;
+        // border: 1px solid black;
         width: 70%;
        }
+       @media (max-width:848px) {
+        .others{
+            width: 90%;
+           }
+    }
+    @media (max-width:544px) {
+        .others{
+            width: 95%;
+           }
+     }
         .question{
             font-size: 19px;
             padding: 10px;
             border: 1px solid black;
+            background-color:rgba(255, 255, 255, 0.815);
+            // height: 5em;
+            padding: 10px;
+            word-break: break-all;
+            word-wrap: break-word;
+            font-size: 17px;
         }
         .selected{
           display: none;
+          word-break: break-all;
+          word-wrap: break-word;
         }
         .answer{
           display: none;
+          word-break: break-all;
+          word-wrap: break-word;
         }
         .ansDesc{
             width: 100%;
             border: 1px solid black;
             word-break: break-all;
-            margin-top: 10px;
+            margin-top: 2px;
             font-family: sans-serif;
             padding: 2px;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: peru;
+            color: white;
+            b:first-child{
+                background-color: black;
+                padding: 4px;
+                text-decoration: underline;
+            }
             .ans{
           font-size: 14px;
         //   background-color: black;
         //   color: white;
           padding: 4px;
           display: inline-block;
+          word-break: break-all;
+          word-wrap: break-word;
+        //   color: rgb(191, 250, 191);
+            }
+            span{
+                display: inline-block;
+                word-break: break-all;
+                word-wrap: break-word;
+                background-color: rgba(255, 255, 255, 0.308);
+                font-size: 15px;
+                padding: 5px;
+                color: black;
             }
         }
         .options{
@@ -104,9 +181,14 @@
                 justify-content:flex-start;
                 border: 1px solid black;
                 margin-top: 2px;
+                background-color: rgba(0, 0, 0, 0.589);
+                color: white;
+                word-break: break-all;
+                word-wrap: break-word;
+                font-size: 13px;
                 h1{
                     border: 1px solid black;
-                    background-color: gray;
+                    background-color: rgb(31, 31, 31);
                     padding: 5px;
                     width: 1.3em;
                 }
@@ -116,7 +198,7 @@
             }
             .option:hover{
                 cursor: pointer;
-                background-color: rgba(255, 255, 255, 0.966);
+                background-color: rgba(0, 0, 0, 0.884);
             }
         }
     }
@@ -133,5 +215,21 @@
         .submit{
             background-color: green;
         }
+    }
+    @media (max-width:848px) {
+       .innerCont{
+        width: 80%;
+        margin-top: 12em;
+       }
+    }
+    @media (max-width:544px) {
+       .innerCont{
+        width: 95%;
+       }
+    }
+    @media (max-width:425px) {
+       .innerCont{
+        width: 99%;
+       }
     }
 }

@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.landingContainer{
+    width: 100%;
+    height: 100vh;
+    font-family: sans-serif;
+    background-color: black;
+    .header{
+        width: 100%;
+        height: 3em;
+        display: flex;
+        align-items: center;
+        border:1px solid black;
+        justify-content: space-around;
+        // background-color: orange;
+        background-color: rgb(71, 15, 71);
+        color: black;
+        .logo{
+font-size: 22px;
+            margin: 10px;
+            color: white;
+        }
+        .navList{
+            display: flex;
+            align-items: center;
+            // border: 1px solid black;
+            a{
+                margin: 10px;
+                text-decoration: none;
+                color: black;
+                color: white;
+                font-size: 19px;
+                font-weight: bold;
+            }
+            button{
+                padding: 10px;
+                background-color: orangered;
+                border: 1px solid white;
+                color: white;
+                font-weight: bold;
+            }
+        }
+    }
+    .hero{
+      border: 1px solid black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    //   background-color: rgb(255, 225, 171);
+      background-color: plum;
+      h1{
+        margin-top: 3em;
+        width: 80%;
+        text-align: center; 
+          span{
+            background-color: greenyellow;
+            padding: 5px;
+            border-radius: 5px;
+          }
+       
+      }
+      @media (max-width:567px) {
+         h1{
+            font-size: 24px;
+         }
+      }
+      button{
+        padding: 10px;
+        margin: 2em;
+        background-color: orangered;
+        color: white;
+        font-weight: bold;
+        border: 1px solid white;
+        width: 10em;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+      }
+      img{
+        margin: 1em;
+      }
+    }
+    .footer{
+        border: 1px solid black;
+        height: 7em;
+        background-color: black;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .logo{
+            text-align: center;
+            font-size: 22px;
+            margin: 10px;
+        }
+    }
+}

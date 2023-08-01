@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../stylings/form.css";
 
 export default function Signup() {
   const [ipAdd, setIpAdd] = useState("");
@@ -15,25 +16,11 @@ export default function Signup() {
     screenDimensions: "",
   });
   useEffect(() => {
-    // fetch("https://api.ipify.org?format=json")
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     const ipAddress = data.ip;
-    //     console.log("User IP address:", ipAddress);
-    //     setData((prev) => ({
-    //       ...prev,
-    //       ipAddress: ipAddress,
-    //     }));
-    //     // You can use the 'ipAddress' variable for further processing
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
     const screenWidth = window.screen.width;
     const screenHeight = window.screen.height;
 
-    console.log(screenWidth);
-    console.log(screenHeight);
+    // console.log(screenWidth);
+    // console.log(screenHeight);
     setData((prev) => ({
       ...prev,
       screenDimensions: `${
@@ -60,8 +47,8 @@ export default function Signup() {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.message == "user registered") {
-          alert("user registered");
+        if (res.message == "user fully registered") {
+          alert("user fully registered");
           navigate("/login");
         } else {
           alert(res.message);
@@ -70,8 +57,8 @@ export default function Signup() {
   };
   return (
     <div className="formCont">
-      <h1>Welcome to Learn GST (UNIBEN)</h1>
-      <span>Practice till you get it</span>
+      <h1>Welcome to Practice GST (UNIBEN)</h1>
+      <span>Practice till you get it...</span>
       <div className="contInner">
         <input
           type="text"
@@ -93,6 +80,7 @@ export default function Signup() {
           name="department"
           onChange={handleChange}
         ></input>
+        <br></br>
         <input
           type="number"
           placeholder="Phone number*"
@@ -123,10 +111,10 @@ export default function Signup() {
         <br></br>
         <button onClick={handleSubmit}>Submit</button>
       </div>
-      <div>
+      <div className="firstPrompt">
         Already have an account? <a href="/login">Login</a> to continue
       </div>
-      <div>
+      <div className="secondPrompt">
         Message <a href="##">Godswill</a> to purchase an access code. With this
         code you gain complete access to all the GST courses.
       </div>

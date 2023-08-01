@@ -7,21 +7,45 @@
 .container2 {
   width: 100%;
   position: relative;
+  background-color: plum;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-family: sans-serif;
 }
 .container2 .innerContainer {
   width: 70%;
 }
 .container2 .innerContainer h1 {
-  background-color: orange;
+  background-color: purple;
+  color: white;
+  padding-left: 10px;
+  font-size: 24px;
+}
+.container2 .innerContainer .task {
+  font-size: 19px;
+  color: peru;
+}
+.container2 .innerContainer .name {
+  color: orange;
 }
 .container2 .innerContainer .topics .subject {
   background-color: black;
   color: white;
-  font-size: 28px;
+  font-size: 23px;
   font-weight: bold;
   padding: 17px;
   border: 1px solid white;
   margin-bottom: 2px;
+  background-color: rgb(36, 15, 36);
+  color: white;
+}
+@media (max-width: 656px) {
+  .container2 .innerContainer {
+    width: 95%;
+  }
 }
 .container2 .timer {
   border: 1px solid black;
@@ -34,6 +58,29 @@
   transform: translate(-50%, -50%);
   z-index: 2;
   padding: 15px;
+}
+.container2 .timer h4 {
+  color: orange;
+}
+.container2 .timer h1 {
+  color: white;
+  font-size: 24px;
+}
+.container2 .timer .time {
+  color: orange;
+}
+.container2 .timer input {
+  padding: 5px;
+  margin: 2px;
+}
+.container2 .timer a .button {
+  padding: 7px;
+  margin: 3px;
+  background: green;
+  color: white;
+  font-weight: bold;
+  border: 1px solid white;
+  border-radius: 5px;
 }
 .container2 .wrapper {
   width: 100%;
