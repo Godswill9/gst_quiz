@@ -48,7 +48,8 @@ export default function Login() {
   };
 
   const handleSubmit = () => {
-    fetch("http://127.0.0.1:8080/api/login", {
+    // fetch("http://127.0.0.1:8080/api/login", {
+    fetch("https://quiz-backen2.onrender.com/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

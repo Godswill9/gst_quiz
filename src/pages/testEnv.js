@@ -27,7 +27,7 @@ export default function TestEnv() {
   }, []);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8080/api/student", {
+    fetch("https://quiz-backen2.onrender.com/api/student", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -74,7 +74,7 @@ export default function TestEnv() {
   // console.log(time, secs);
 
   const fetchQuestions = () => {
-    fetch("http://127.0.0.1:8080/api/client/allQuestions", {
+    fetch("https://quiz-backen2.onrender.com/api/client/allQuestions", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -293,7 +293,8 @@ export default function TestEnv() {
                           //   option,
                           //   number: index + 1,
                           // };
-                          const parentElement = e.target.parentElement;
+                          const parentElement = e.currentTarget.parentElement;
+                          // console.log(parentElement);
                           parentElement.getElementsByClassName(
                             "option"
                           )[0].style.backgroundColor = "";
@@ -306,10 +307,24 @@ export default function TestEnv() {
                           parentElement.getElementsByClassName(
                             "option"
                           )[3].style.backgroundColor = "";
-                          e.target.style.backgroundColor = "rgb(191, 250, 191)";
-                          e.target.style.color = "black";
+                          parentElement.getElementsByClassName(
+                            "option"
+                          )[0].style.color = "";
+                          parentElement.getElementsByClassName(
+                            "option"
+                          )[1].style.color = "";
+                          parentElement.getElementsByClassName(
+                            "option"
+                          )[2].style.color = "";
+                          parentElement.getElementsByClassName(
+                            "option"
+                          )[3].style.color = "";
+                          e.currentTarget.style.backgroundColor =
+                            "rgb(191, 250, 191)";
+                          e.currentTarget.style.color = "black";
                           const box =
-                            e.target.parentElement.parentElement.parentElement;
+                            e.currentTarget.parentElement.parentElement
+                              .parentElement;
                           var selected = box.querySelector(".selected");
                           var answer = box.querySelector(".answer");
                           selected.textContent = vals[i];

@@ -37,7 +37,7 @@ export default function Signup() {
   };
 
   const handleSubmit = async () => {
-    await fetch("http://127.0.0.1:8080/api/signup", {
+    await fetch("https://quiz-backen2.onrender.com/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

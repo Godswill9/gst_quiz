@@ -27,7 +27,7 @@ export default function Landing() {
         <h1>
           You can now take GST tests at your own <span>time and pace</span>
         </h1>
-        <img src="phone1.jpg"></img>
+        <img src="uniben_logo-removebg-preview.png"></img>
         <a href="/signup">
           <button>Get started</button>
         </a>

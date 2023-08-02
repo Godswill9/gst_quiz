@@ -177,6 +177,7 @@
   word-break: break-all;
   word-wrap: break-word;
   font-size: 13px;
+  font-weight: bold;
 }
 .container .innerCont .options .option h1 {
   border: 1px solid black;
