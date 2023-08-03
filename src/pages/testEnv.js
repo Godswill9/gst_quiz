@@ -274,7 +274,7 @@ export default function TestEnv() {
           </h3>
         </div>
         <h1 className="head">Attempt all questions</h1>
-        {questions.reverse().map((item, index) => {
+        {questions.map((item, index) => {
           return (
             <div className="box" key={index} ref={allVals}>
               <span className="number">{index + 1}</span>
