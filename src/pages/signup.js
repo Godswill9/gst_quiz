@@ -5,6 +5,10 @@ import "../stylings/form.css";
 export default function Signup() {
   const [ipAdd, setIpAdd] = useState("");
   const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [display, setDisplay] = useState("none");
+  const [errDisplay, seterrDisplay] = useState("none");
+  const [displayLoader, setdisplayLoader] = useState("none");
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -13,19 +17,13 @@ export default function Signup() {
     email: "",
     phone: 0,
     password: "",
-    screenDimensions: "",
+    phoneSpec: "",
   });
-  useEffect(() => {
-    const screenWidth = window.screen.width;
-    const screenHeight = window.screen.height;
 
-    // console.log(screenWidth);
-    // console.log(screenHeight);
+  useEffect(() => {
     setData((prev) => ({
       ...prev,
-      screenDimensions: `${
-        "width:" + screenWidth + " " + "height:" + screenHeight
-      }`,
+      phoneSpec: navigator.userAgent,
     }));
   }, []);
 
@@ -36,8 +34,17 @@ export default function Signup() {
     }));
   };
 
+  const removeErrMessage = () => {
+    seterrDisplay("none");
+  };
+  const removeMessage = () => {
+    setDisplay("none");
+  };
+
   const handleSubmit = async () => {
+    setdisplayLoader("flex");
     await fetch("https://quiz-backen2.onrender.com/api/signup", {
+      // await fetch("http://localhost:8080/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,16 +54,49 @@ export default function Signup() {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (res.message == "user fully registered") {
-          alert("user fully registered");
+        setdisplayLoader("none");
+        if (res.status == "error") {
+          seterrDisplay("flex");
+          setMessage(res.message);
+          setDisplay("none");
+        } else {
+          setDisplay("flex");
+          setMessage(res.message);
+          seterrDisplay("none");
+        }
+        if (res.message == "User fully registered") {
           navigate("/login");
         } else {
-          alert(res.message);
         }
       });
   };
   return (
     <div className="formCont">
+      <div className="loading" style={{ display: displayLoader }}>
+        <span>Signing up...</span>
+      </div>
+      <div
+        className="popupMessageErr"
+        style={{ display: errDisplay }}
+        onClick={removeErrMessage}
+      >
+        <div className="inner">
+          <h4>Message:</h4>
+          <span>{message}</span>
+          <button onClick={removeErrMessage}>back</button>
+        </div>
+      </div>
+      <div
+        className="popupMessageSuccess"
+        style={{ display: display }}
+        onClick={removeMessage}
+      >
+        <div className="inner">
+          <h4>Message:</h4>
+          <span>{message}</span>
+          <button onClick={removeMessage}>back</button>
+        </div>
+      </div>
       <h1>Welcome to Practice GST (UNIBEN)</h1>
       <span>Practice till you get it...</span>
       <div className="contInner">

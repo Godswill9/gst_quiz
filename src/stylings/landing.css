@@ -8,7 +8,6 @@
   width: 100%;
   height: 100vh;
   font-family: sans-serif;
-  background-color: black;
 }
 .landingContainer .header {
   width: 100%;
@@ -19,11 +18,25 @@
   justify-content: space-around;
   background-color: rgb(71, 15, 71);
   color: black;
+  z-index: 2;
 }
 .landingContainer .header .logo {
   font-size: 22px;
   margin: 10px;
   color: white;
+}
+.landingContainer .header .logo img {
+  width: 4em;
+  height: 4em;
+}
+.landingContainer .header .logo span {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  color: rgb(255, 0, 255);
+  padding: 6px;
+  border-radius: 10px;
+  font-family: cursive;
 }
 .landingContainer .header .navList {
   display: flex;
@@ -34,8 +47,14 @@
   text-decoration: none;
   color: black;
   color: white;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: bold;
+  border: 1px solid black;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.landingContainer .header .navList a .test {
+  margin-right: 13px;
 }
 .landingContainer .header .navList button {
   padding: 10px;
@@ -45,24 +64,47 @@
   font-weight: bold;
 }
 .landingContainer .hero {
+  overflow-x: hidden;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: plum;
+  background-color: rgb(240, 186, 240);
+  position: relative;
+  height: 40em;
+  overflow: hidden;
 }
-.landingContainer .hero h1 {
+.landingContainer .hero .design {
+  height: 200%;
+  border: 2px solid white;
+  width: 300%;
+  transform: rotate(40deg);
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  background-color: rgba(128, 0, 128, 0.438);
+}
+.landingContainer .hero .others {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3em;
+  position: absolute;
+  top: 0%;
+  overflow: hidden;
+}
+.landingContainer .hero .others h1 {
   margin-top: 3em;
   width: 80%;
   text-align: center;
 }
-.landingContainer .hero h1 span {
-  background-color: greenyellow;
+.landingContainer .hero .others h1 span {
   padding: 5px;
   border-radius: 5px;
+  color: white;
 }
 @media (max-width: 567px) {
-  .landingContainer .hero h1 {
+  .landingContainer .hero .others h1 {
     font-size: 24px;
   }
 }
@@ -89,6 +131,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 .landingContainer .footer .logo {
   text-align: center;

@@ -11,26 +11,32 @@ export default function Landing() {
   //   }
   // }, []);
   return (
-    <div className="landingContainer">
+    <div className="landingContainer" style={{ overflowX: "hidden" }}>
       <div className="header">
-        <div className="logo">Devout</div>
+        <div className="logo">
+          <span> DEVOUTdev</span>
+          {/* <img src="logo.png"></img> */}
+        </div>
         <div className="navList">
+          {/* <a href="/home">
+            <div className="test">Go to test</div>
+          </a> */}
           <a href="/home">
-            <div>Test</div>
-          </a>
-          <a href="/signup">
-            <button>Signup</button>
+            <button>Start test</button>
           </a>
         </div>
       </div>
       <div className="hero">
-        <h1>
-          You can now take GST tests at your own <span>time and pace</span>
-        </h1>
-        <img src="uniben_logo-removebg-preview.png"></img>
-        <a href="/signup">
-          <button>Get started</button>
-        </a>
+        <div className="design"></div>
+        <div className="others">
+          <h1>
+            You can now take GST tests at your own <span>time and pace</span>
+          </h1>
+          <img src="uniben_logo-removebg-preview.png"></img>
+          <a href="/signup">
+            <button>Get started</button>
+          </a>
+        </div>
       </div>
       <div className="footer">
         <div className="logo">Devout</div>

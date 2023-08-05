@@ -66,8 +66,8 @@ export default function Home() {
         <input
           type="number"
           onChange={(e) => {
-            if (e.target.value == 0) {
-              alert("you cannot select zero");
+            if (e.target.value <= 0) {
+              e.target.value = 1;
               return;
             }
             setTime(e.target.value);
@@ -78,7 +78,7 @@ export default function Home() {
         <a href="/testEnv">
           <button
             className="button"
-            onClick={() => {
+            onClick={(e) => {
               localStorage.setItem("time", time);
             }}
           >

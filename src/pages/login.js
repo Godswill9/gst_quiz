@@ -8,36 +8,27 @@ export default function Login() {
   const [data, setData] = useState({
     email: "",
     password: "",
-    screenDimensions: "",
+    phoneSpec: "",
   });
+  const [message, setMessage] = useState("");
+  const [display, setDisplay] = useState("none");
+  const [errDisplay, seterrDisplay] = useState("none");
   const [ipAdd, setIpAdd] = useState("");
-  useEffect(() => {
-    // fetch("https://api.ipify.org?format=json")
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     const ipAddress = data.ip;
-    //     console.log("User IP address:", ipAddress);
-    //     setData((prev) => ({
-    //       ...prev,
-    //       ipAddress: ipAddress,
-    //     }));
-    //     // You can use the 'ipAddress' variable for further processing
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
-    const screenWidth = window.screen.width;
-    const screenHeight = window.screen.height;
+  const [displayLoader, setdisplayLoader] = useState("none");
 
-    // console.log(screenWidth);
-    // console.log(screenHeight);
+  useEffect(() => {
     setData((prev) => ({
       ...prev,
-      screenDimensions: `${
-        "width:" + screenWidth + " " + "height:" + screenHeight
-      }`,
+      phoneSpec: navigator.userAgent,
     }));
   }, []);
+
+  const removeErrMessage = () => {
+    seterrDisplay("none");
+  };
+  const removeMessage = () => {
+    setDisplay("none");
+  };
 
   const cookieOptions = { expires: 10 };
   const handleChange = (e) => {
@@ -49,6 +40,7 @@ export default function Login() {
 
   const handleSubmit = () => {
     // fetch("http://127.0.0.1:8080/api/login", {
+    setdisplayLoader("flex");
     fetch("https://quiz-backen2.onrender.com/api/login", {
       method: "POST",
       headers: {
@@ -59,6 +51,16 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((res) => {
+        setdisplayLoader("none");
+        if (res.status == "error") {
+          seterrDisplay("flex");
+          setMessage(res.message);
+          setDisplay("none");
+        } else {
+          setDisplay("flex");
+          setMessage(res.message);
+          seterrDisplay("none");
+        }
         if (res.status == "success") {
           Cookies.set("jwt", res.accessToken, cookieOptions);
           localStorage.setItem("studentId", res.id);
@@ -66,12 +68,37 @@ export default function Login() {
           localStorage.setItem("studentDepartment", res.department);
           navigate("/home");
         } else {
-          alert(res.message);
+          // alert(res.message);
         }
       });
   };
   return (
     <div className="formCont">
+      <div className="loading" style={{ display: displayLoader }}>
+        <span>Logging in...</span>
+      </div>
+      <div
+        className="popupMessageErr"
+        style={{ display: errDisplay }}
+        onClick={removeErrMessage}
+      >
+        <div className="inner">
+          <h4>Message:</h4>
+          <span>{message}</span>
+          <button onClick={removeErrMessage}>back</button>
+        </div>
+      </div>
+      <div
+        className="popupMessageSuccess"
+        style={{ display: display }}
+        onClick={removeMessage}
+      >
+        <div className="inner">
+          <h4>Message:</h4>
+          <span>{message}</span>
+          <button onClick={removeMessage}>back</button>
+        </div>
+      </div>
       <h1>Welcome back</h1>
       <span>Login to your account</span>
       <div className="contInner">

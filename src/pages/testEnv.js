@@ -17,7 +17,13 @@ export default function TestEnv() {
   const [subject, setSubject] = useState("");
   const [name, setName] = useState("");
   const [department, setDepartment] = useState("");
+  const [displayLoader, setdisplayLoader] = useState("none");
+  const [height, setHeight] = useState("");
 
+  useEffect(() => {
+    console.log("starting");
+    setdisplayLoader("flex");
+  }, []);
   useEffect(() => {
     const cookie = Cookies.get("jwt");
     if (!cookie) {
@@ -27,6 +33,26 @@ export default function TestEnv() {
   }, []);
 
   useEffect(() => {
+    let prevScrollPos = window.scrollY;
+    window.addEventListener(
+      "scroll",
+      () => {
+        const currentScrollPos = window.scrollY;
+
+        if (currentScrollPos < prevScrollPos) {
+          setHeight("");
+          // console.log("rice"); // Scrolling up
+        } else if (currentScrollPos > prevScrollPos) {
+          setHeight("0px");
+          // console.log("beans"); // Scrolling down
+        }
+      },
+      []
+    );
+  });
+
+  useEffect(() => {
+    // fetch("http://localhost:8080/api/student", {
     fetch("https://quiz-backen2.onrender.com/api/student", {
       method: "POST",
       credentials: "include",
@@ -51,12 +77,12 @@ export default function TestEnv() {
   }, []);
 
   useEffect(() => {
+    fetchQuestions();
     var getTime = localStorage.getItem("time");
     var getSubject = localStorage.getItem("subject");
     setTime(getTime);
     setSubject(getSubject);
     let currentSeconds = getTime * 60;
-    fetchQuestions();
 
     const intervalId = setInterval(() => {
       if (currentSeconds == 0) {
@@ -75,6 +101,7 @@ export default function TestEnv() {
 
   const fetchQuestions = () => {
     fetch("https://quiz-backen2.onrender.com/api/client/allQuestions", {
+      // fetch("http://localhost:8080/api/client/allQuestions", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -87,6 +114,7 @@ export default function TestEnv() {
     })
       .then((res) => res.json())
       .then((res) => {
+        setdisplayLoader("none");
         if (res.message == "no Questions") {
           // console.log("no questions");
           return;
@@ -252,7 +280,10 @@ export default function TestEnv() {
           <div className="timer">
             <span>TIME:</span> {time}:{secs}
           </div>
-          <div className="identity">
+          <div className="wrap" style={{ height: height, overflow: "hidden", transition:".5s ease" }}>
+          <div
+            className="identity"
+          >
             <div className="name">
               <span>NAME:</span> {name}
             </div>
@@ -264,93 +295,108 @@ export default function TestEnv() {
             <span>COURSE: </span>
             {subject}
           </div>
+          </div>
         </div>
       </nav>
       <div className="innerCont">
+        <div className="loading" style={{ display: displayLoader }}>
+          <span>loading data...</span>
+        </div>
         <div className="result" style={{ display: scoreDisplay }}>
           <h3>
             Your score is {totalScore}/{questions.length}. View corrections
             below
           </h3>
         </div>
-        <h1 className="head">Attempt all questions</h1>
-        {questions.map((item, index) => {
-          return (
-            <div className="box" key={index} ref={allVals}>
-              <span className="number">{index + 1}</span>
-              <div className="others">
-                <div className="question">{item.question}?</div>
-                <div className="options">
-                  {JSON.parse(item.options).map((option, i) => {
-                    var vals = ["A", "B", "C", "D"];
-                    var ans = item.answer;
-                    return (
-                      <div
-                        className="option"
-                        key={i}
-                        onClick={(e) => {
-                          // var updatedOption = {
-                          //   option,
-                          //   number: index + 1,
-                          // };
-                          const parentElement = e.currentTarget.parentElement;
-                          // console.log(parentElement);
-                          parentElement.getElementsByClassName(
-                            "option"
-                          )[0].style.backgroundColor = "";
-                          parentElement.getElementsByClassName(
-                            "option"
-                          )[1].style.backgroundColor = "";
-                          parentElement.getElementsByClassName(
-                            "option"
-                          )[2].style.backgroundColor = "";
-                          parentElement.getElementsByClassName(
-                            "option"
-                          )[3].style.backgroundColor = "";
-                          parentElement.getElementsByClassName(
-                            "option"
-                          )[0].style.color = "";
-                          parentElement.getElementsByClassName(
-                            "option"
-                          )[1].style.color = "";
-                          parentElement.getElementsByClassName(
-                            "option"
-                          )[2].style.color = "";
-                          parentElement.getElementsByClassName(
-                            "option"
-                          )[3].style.color = "";
-                          e.currentTarget.style.backgroundColor =
-                            "rgb(191, 250, 191)";
-                          e.currentTarget.style.color = "black";
-                          const box =
-                            e.currentTarget.parentElement.parentElement
-                              .parentElement;
-                          var selected = box.querySelector(".selected");
-                          var answer = box.querySelector(".answer");
-                          selected.textContent = vals[i];
-                          answer.textContent = item.answer;
-                          //   localStorage.setItem("allAnawers", JSON.stringify(arrr))
-                        }}
-                      >
-                        <h1>{vals[i]}</h1>
-                        <span>{option}</span>
-                      </div>
-                    );
-                  })}
+        <h1 className="head">Answer all questions</h1>
+        {!questions ? (
+          <h1>No questions</h1>
+        ) : (
+          questions.map((item, index) => {
+            const yourStringFromDatabase = item.description;
+            const stringArray = yourStringFromDatabase.split("!!");
+            return (
+              <div className="box" key={index} ref={allVals}>
+                <span className="number">{index + 1}</span>
+                <div className="others">
+                  <div className="question">{item.question}?</div>
+                  <div className="options">
+                    {JSON.parse(item.options).map((option, i) => {
+                      var vals = ["A", "B", "C", "D"];
+                      var ans = item.answer;
+                      return (
+                        <div
+                          className="option"
+                          key={i}
+                          onClick={(e) => {
+                            // var updatedOption = {
+                            //   option,
+                            //   number: index + 1,
+                            // };
+                            const parentElement = e.currentTarget.parentElement;
+                            // console.log(parentElement);
+                            parentElement.getElementsByClassName(
+                              "option"
+                            )[0].style.backgroundColor = "";
+                            parentElement.getElementsByClassName(
+                              "option"
+                            )[1].style.backgroundColor = "";
+                            parentElement.getElementsByClassName(
+                              "option"
+                            )[2].style.backgroundColor = "";
+                            parentElement.getElementsByClassName(
+                              "option"
+                            )[3].style.backgroundColor = "";
+                            parentElement.getElementsByClassName(
+                              "option"
+                            )[0].style.color = "";
+                            parentElement.getElementsByClassName(
+                              "option"
+                            )[1].style.color = "";
+                            parentElement.getElementsByClassName(
+                              "option"
+                            )[2].style.color = "";
+                            parentElement.getElementsByClassName(
+                              "option"
+                            )[3].style.color = "";
+                            e.currentTarget.style.backgroundColor =
+                              "rgb(255, 230, 2)";
+                            e.currentTarget.style.color = "black";
+                            const box =
+                              e.currentTarget.parentElement.parentElement
+                                .parentElement;
+                            var selected = box.querySelector(".selected");
+                            var answer = box.querySelector(".answer");
+                            selected.textContent = vals[i];
+                            answer.textContent = item.answer;
+                            //   localStorage.setItem("allAnawers", JSON.stringify(arrr))
+                          }}
+                        >
+                          <h1>{vals[i]}</h1>
+                          <span>{option}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="ansDesc" style={{ display: scoreDisplay }}>
+                    <b>Answer description</b>
+                    <br></br>
+                    <b className="ans">{item.answer}</b>
+                    <br></br>
+                    <span>
+                      {stringArray.map((line, index) => (
+                        // Render each line with a new line break
+                        <p key={index}>{line}</p>
+                      ))}
+                    </span>
+                  </div>
+                  <span className="selected"></span>
+                  <span className="answer"></span>
                 </div>
-                <div className="ansDesc" style={{ display: scoreDisplay }}>
-                  <b>Answer description</b>
-                  <br></br>
-                  <b className="ans">{item.answer}</b>
-                  <br></br>
-                  <span>{item.description}</span>
-                </div>
-                <span className="selected"></span>
-                <span className="answer"></span>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
       <footer>
         <button

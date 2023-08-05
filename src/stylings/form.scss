@@ -12,7 +12,134 @@
     padding-top: 3em;
     font-family: sans-serif;
     background:linear-gradient(rgb(255, 162, 255), white, rgb(247, 212, 247));
-    height: 100vh;
+    height: 120vh;
+    position: relative;
+    .loading{
+        // border: 1px solid black;
+        display: flex;
+        // align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.486);
+        span{
+            font-weight: bold;
+            display: block;
+            margin-top: 14em;
+            background-color: white;
+            background:linear-gradient(rgb(255, 162, 255), white, rgb(247, 212, 247));
+            color: purple;
+            padding: 18px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bounce .8s linear infinite alternate;
+            height: fit-content;
+        }
+        @keyframes bounce {
+        0%{
+            transform: translateY(0px);
+        }
+        100%{
+            transform: translateY(25px);
+            // background-color: black;
+            // color: white;
+        }
+        }
+    }
+    .popupMessageErr{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.39);
+        font-style: normal;
+        .inner{
+            border:1px solid red;
+            background-color: white;
+            padding-block-end: 10px;
+            display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 10px;
+        width: 14em;
+            h4{
+                font-style: normal;
+                background-color: red;
+                color: white;
+                width: 100%;
+                padding: 6px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+            span{
+                display: block;
+                font-style: normal;
+                color: red;
+                text-align: center;
+                font-size: 15px;
+            }
+            button{
+                padding: 6px;
+                background-color: black;
+            }
+        }
+    }
+    .popupMessageSuccess{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.39);
+        font-style: normal;
+        .inner{
+            border:1px solid green;
+            background-color: white;
+            padding-block-end: 10px;
+            display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 10px;
+        width: 14em;
+            h4{
+                font-style: normal;
+                background-color: black;
+                color: white;
+                width: 100%;
+                padding: 6px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+            span{
+                display: block;
+                font-style: normal;
+                color: green;
+            }
+            button{
+                padding: 6px;
+                background-color: black;
+            }
+        }
+    }
     h1{
         text-align: center;
         color: purple;
@@ -32,6 +159,9 @@
         height: 3em;
         margin: 5px;
         width: 18em;
+        height: 3.5em;
+        border-radius: 4px;
+        border: 1px solid purple;
     }
     button{
         padding: 10px;
