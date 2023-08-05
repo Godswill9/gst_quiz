@@ -40,10 +40,10 @@ export default function TestEnv() {
         const currentScrollPos = window.scrollY;
 
         if (currentScrollPos < prevScrollPos) {
-          setHeight("");
+          setHeight("0px");
           // console.log("rice"); // Scrolling up
         } else if (currentScrollPos > prevScrollPos) {
-          setHeight("0px");
+          setHeight("");
           // console.log("beans"); // Scrolling down
         }
       },

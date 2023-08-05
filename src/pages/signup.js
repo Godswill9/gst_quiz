@@ -155,8 +155,12 @@ export default function Signup() {
         Already have an account? <a href="/login">Login</a> to continue
       </div>
       <div className="secondPrompt">
-        Message <a href="##">Godswill</a> to purchase an access code. With this
-        code you gain complete access to all the GST courses.
+        Message{" "}
+        <a href="https://api.whatsapp.com/send?phone=2348125746595&text=Pls%20I%20need%20an%20access%20code.%20My%20name%20is%20">
+          Godswill
+        </a>{" "}
+        to purchase an access code. With this code you gain complete access to
+        all the GST courses.
       </div>
     </div>
   );
