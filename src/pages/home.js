@@ -75,6 +75,18 @@ export default function Home() {
           value={time}
         ></input>
         mins<br></br>
+        <h1>Choose year</h1>
+        <select
+          name="years"
+          onChange={(e) => {
+            localStorage.setItem("year", e.currentTarget.value);
+          }}
+        >
+          <option value="209">209</option>
+          <option value="2020">2020</option>
+          <option value="202">202</option>
+          <option value="2022">2022</option>
+        </select>
         <a href="/testEnv">
           <button
             className="button"

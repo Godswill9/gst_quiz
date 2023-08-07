@@ -105,11 +105,12 @@ export default function TestEnv() {
       method: "POST",
       credentials: "include",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json", 
       },
       body: JSON.stringify({
         course: localStorage.getItem("subject"),
         cookie: Cookies.get("jwt"),
+        year: localStorage.getItem("year")
       }),
     })
       .then((res) => res.json())
