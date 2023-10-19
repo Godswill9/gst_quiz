@@ -67,8 +67,7 @@
 .formCont .popupMessageErr .inner {
   border: 1px solid red;
   background-color: white;
-  -webkit-padding-after: 10px;
-          padding-block-end: 10px;
+  padding-block-end: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,8 +112,7 @@
 .formCont .popupMessageSuccess .inner {
   border: 1px solid green;
   background-color: white;
-  -webkit-padding-after: 10px;
-          padding-block-end: 10px;
+  padding-block-end: 10px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -11,11 +11,25 @@ export default function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const cookie = Cookies.get("jwt");
-    if (!cookie) {
-      navigate("/login");
-    } else {
-    }
+    // const cookie = Cookies.get("jwt");
+    // console.log(cookie);
+    fetch("http://localhost:8080/api/verifyMe", {
+      // fetch("https://quiz-backen2.onrender.com/api/student", {
+      method: "get",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.message == "login again") {
+          navigate("/login");
+        } else {
+          navigate("/home");
+        }
+      });
   }, []);
   useEffect(() => {
     setName(localStorage.getItem("studentName"));
@@ -32,8 +46,22 @@ export default function Home() {
     setDisplay("none");
   };
 
+  const logout = () => {
+    const cookie = Cookies.get("jwt");
+    cookie ? Cookies.set("jwt", "") : alert("You are logged out already");
+  };
+  const goBack = () => {
+    navigate("/");
+  };
+
   return (
     <div className="container2">
+      <div className="backArrow" onClick={goBack}>
+        back
+      </div>
+      <button className="logout" onClick={logout}>
+        Logout
+      </button>
       <div className="innerContainer">
         <h1>
           Welcome back <span className="name">{name}</span>
@@ -82,10 +110,12 @@ export default function Home() {
             localStorage.setItem("year", e.currentTarget.value);
           }}
         >
-          <option value="209">209</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
           <option value="2020">2020</option>
-          <option value="202">202</option>
+          <option value="2021">2021</option>
           <option value="2022">2022</option>
+          <option value="2023">2023</option>
         </select>
         <a href="/testEnv">
           <button

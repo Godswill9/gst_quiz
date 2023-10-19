@@ -25,11 +25,11 @@ export default function TestEnv() {
     setdisplayLoader("flex");
   }, []);
   useEffect(() => {
-    const cookie = Cookies.get("jwt");
-    if (!cookie) {
-      navigate("/login");
-    } else {
-    }
+    // const cookie = Cookies.get("jwt");
+    // if (!cookie) {
+    //   navigate("/login");
+    // } else {
+    // }
   }, []);
 
   useEffect(() => {
@@ -52,8 +52,8 @@ export default function TestEnv() {
   });
 
   useEffect(() => {
-    // fetch("http://localhost:8080/api/student", {
-    fetch("https://quiz-backen2.onrender.com/api/student", {
+    fetch("http://localhost:8080/api/student", {
+      // fetch("https://quiz-backen2.onrender.com/api/student", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -66,7 +66,8 @@ export default function TestEnv() {
     })
       .then((res) => res.json())
       .then((res) => {
-        if (!res) {
+        console.log(res);
+        if (!res || res.message=="login again") {
           navigate("/login");
           return;
         } else {
@@ -100,17 +101,17 @@ export default function TestEnv() {
   // console.log(time, secs);
 
   const fetchQuestions = () => {
-    fetch("https://quiz-backen2.onrender.com/api/client/allQuestions", {
-      // fetch("http://localhost:8080/api/client/allQuestions", {
+    // fetch("https://quiz-backen2.onrender.com/api/client/allQuestions", {
+    fetch("http://localhost:8080/api/client/allQuestions", {
       method: "POST",
       credentials: "include",
       headers: {
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         course: localStorage.getItem("subject"),
         cookie: Cookies.get("jwt"),
-        year: localStorage.getItem("year")
+        year: localStorage.getItem("year"),
       }),
     })
       .then((res) => res.json())
@@ -281,21 +282,30 @@ export default function TestEnv() {
           <div className="timer">
             <span>TIME:</span> {time}:{secs}
           </div>
-          <div className="wrap" style={{ height: height, overflow: "hidden", transition:".5s ease" }}>
           <div
-            className="identity"
+            className="wrap"
+            style={{
+              height: height,
+              overflow: "hidden",
+              transition: ".5s ease",
+            }}
           >
-            <div className="name">
-              <span>NAME:</span> {name}
+            <div className="identity">
+              <div className="name">
+                <span>NAME:</span> {name}
+              </div>
+              <div className="department">
+                <span>DEPARTMENT:</span> {department}
+              </div>
             </div>
-            <div className="department">
-              <span>DEPARTMENT:</span> {department}
+            <div className="course">
+              <span>COURSE: </span>
+              {subject}
             </div>
-          </div>
-          <div className="course">
-            <span>COURSE: </span>
-            {subject}
-          </div>
+            <div className="course">
+              <span>YEAR: </span>
+              {localStorage.getItem("year")}
+            </div>
           </div>
         </div>
       </nav>
@@ -310,8 +320,10 @@ export default function TestEnv() {
           </h3>
         </div>
         <h1 className="head">Answer all questions</h1>
-        {!questions ? (
-          <h1>No questions</h1>
+        {questions === undefined ||
+        !Array.isArray(questions) ||
+        questions.length === 0 ? (
+          <h1 className="noQuestionsError">No questions in this year</h1>
         ) : (
           questions.map((item, index) => {
             const yourStringFromDatabase = item.description;

@@ -17,15 +17,15 @@ export default function Signup() {
     email: "",
     phone: 0,
     password: "",
-    phoneSpec: "",
+    // phoneSpec: "",
   });
 
-  useEffect(() => {
-    setData((prev) => ({
-      ...prev,
-      phoneSpec: navigator.userAgent,
-    }));
-  }, []);
+  // useEffect(() => {
+  //   setData((prev) => ({
+  //     ...prev,
+  //     phoneSpec: navigator.userAgent,
+  //   }));
+  // }, []);
 
   const handleChange = (e) => {
     setData((prev) => ({
@@ -43,8 +43,8 @@ export default function Signup() {
 
   const handleSubmit = async () => {
     setdisplayLoader("flex");
-    await fetch("https://quiz-backen2.onrender.com/api/signup", {
-      // await fetch("http://localhost:8080/api/signup", {
+    // await fetch("https://quiz-backen2.onrender.com/api/signup", {
+    await fetch("http://localhost:8080/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

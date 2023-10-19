@@ -59,6 +59,14 @@
   align-items: center;
   position: relative;
 }
+.container .innerCont .noQuestionsError {
+  background-color: white;
+  padding: 10px;
+  color: black;
+  font-size: 17px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
 .container .innerCont .loading {
   border: 1px solid black;
   display: flex;

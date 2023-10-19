@@ -8,7 +8,7 @@ export default function Login() {
   const [data, setData] = useState({
     email: "",
     password: "",
-    phoneSpec: "",
+    // phoneSpec: "",
   });
   const [message, setMessage] = useState("");
   const [display, setDisplay] = useState("none");
@@ -16,12 +16,12 @@ export default function Login() {
   const [ipAdd, setIpAdd] = useState("");
   const [displayLoader, setdisplayLoader] = useState("none");
 
-  useEffect(() => {
-    setData((prev) => ({
-      ...prev,
-      phoneSpec: navigator.userAgent,
-    }));
-  }, []);
+  // useEffect(() => {
+  //   setData((prev) => ({
+  //     ...prev,
+  //     phoneSpec: navigator.userAgent,
+  //   }));
+  // }, []);
 
   const removeErrMessage = () => {
     seterrDisplay("none");
@@ -41,7 +41,8 @@ export default function Login() {
   const handleSubmit = () => {
     // fetch("http://127.0.0.1:8080/api/login", {
     setdisplayLoader("flex");
-    fetch("https://quiz-backen2.onrender.com/api/login", {
+    // fetch("https://quiz-backen2.onrender.com/api/login", {
+    fetch("http://localhost:8080/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

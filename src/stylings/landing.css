@@ -24,6 +24,7 @@
   font-size: 22px;
   margin: 10px;
   color: white;
+  cursor: pointer;
 }
 .landingContainer .header .logo img {
   width: 4em;
@@ -73,16 +74,23 @@
   position: relative;
   height: 40em;
   overflow: hidden;
+  background: url(../../public/launch1.webp) rgba(240, 6, 240, 0.585);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+  color: white;
 }
 .landingContainer .hero .design {
   height: 200%;
-  border: 2px solid white;
+  border: 1px solid rgb(73, 8, 79);
   width: 300%;
   transform: rotate(40deg);
   position: absolute;
-  top: 30%;
+  top: 20%;
   left: 20%;
-  background-color: rgba(128, 0, 128, 0.438);
+  background-color: rgba(128, 0, 128, 0.479);
+  display: none;
 }
 .landingContainer .hero .others {
   display: flex;
@@ -119,6 +127,7 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 20px;
+  font-size: 15px;
 }
 .landingContainer .hero img {
   margin: 1em;
@@ -137,4 +146,57 @@
   text-align: center;
   font-size: 22px;
   margin: 10px;
+}
+.landingContainer .prompt {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  padding: 20px;
+  transition: bottom 0.8s ease-in-out;
+}
+.landingContainer .prompt.open {
+  bottom: 0;
+}
+.landingContainer .prompt .prompt-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.landingContainer .prompt .prompt-content h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.landingContainer .prompt .prompt-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.landingContainer .prompt .prompt-content button {
+  padding: 10px 20px;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.landingContainer .prompt .prompt-content button:hover {
+  background-color: #005599;
+}
+.landingContainer .prompt .close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 10px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.landingContainer .prompt .close-button:hover {
+  background-color: #999;
 }/*# sourceMappingURL=landing.css.map */
